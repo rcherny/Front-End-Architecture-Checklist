@@ -1,10 +1,4 @@
-Title: BaseFrontEndArch
-Timestamp: 2012-06-07 23:00:17 +0000
-Created: 2012-05-15 21:52:38 +0000
-Last Accessed: 2012-06-07 23:00:23 +0000
-Times Accessed: 10
-Tags: 
-Metadata: 
+
 # Baseline Front End Architecture Checklist
 
 General high level overview of front end technology considerations while building a Web site or Web application.
