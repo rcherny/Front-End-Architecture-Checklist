@@ -7,8 +7,6 @@ Tags:
 Metadata: 
 # Baseline Front End Architecture Checklist
 
-# Baseline Front End Architecture Checklist
-
 General high level overview of front end technology considerations while building a Web site or Web application.
 
     Note this is somewhat out of date.
