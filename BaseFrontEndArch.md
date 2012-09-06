@@ -1,8 +1,7 @@
 
 # Baseline Front End Architecture Checklist
 
-  Note this is somewhat out of date.
-  Updates coming soon ... a certain work in progress.
+This document is a living document that is still going through revisions.
 
 ## General
 
@@ -39,6 +38,7 @@ General high level overview of front end technology considerations while buildin
 ### Backend: View Rendering Technology
  * How is the front end to be rendered with this technology?
  * Who does the integration with the back end?
+ * Are there "Products" or "frameworks" involved that claim all they need is a "theme" applied?
  * Are there pre-built widgets at work? (see JS below)
     * CMS?
     * Portal?
@@ -62,14 +62,6 @@ General high level overview of front end technology considerations while buildin
  * Other Applications
  * Coding Guidelines
 
-### Translation / Localization / i18n Requirements
-
-    (Should probably move this section)
-
- * Does the site need to be in multiple languages?
- * What is the plan for how that content will be maintained?
- * Consider localization impact on CSS/JS
-
 ### Browser Specs
  * Degradation Style
  * Backwards Compatibility Policy
@@ -91,63 +83,102 @@ General high level overview of front end technology considerations while buildin
  * Will a CDN be used in the final environment?
  * Will this impact cached code / updated code?
 
+### Translation / Localization / i18n Requirements
+ * Does the site need to be in multiple languages?
+ * What is the plan for how that content will be maintained?
+ * Consider localization impact on CSS/JS (see below)
+ * Will translations be handled "on the fly" or will users be "redirected" to unique sites?
+
 
 ## Process
 
 ### Requirements Definition
- * Deliverables to iDevs
+ * Expected deliverables to Front end developers
+ * Expected deliverables from Front end developers
+ * Front end developer Design Review
+   * Feedback on designs prior to client sign-off
+   * Can the process be iterative with design?
+   * Will there be prototypes or proofs of concepts?
  * Backend data / services
     * Mock data / Stubs / sample data
-    * Timeframe?
+    * Timeframe vs. front end development?
  * Wireframes
  * All applicable widget "states"
+   * Errors
+   * Warnings
+   * Hide/show
  * Designs
 
 ### Schedule
  * Were there assumptions as to when front end code would be integrated?
-    * Before (or after) xyz?
+   * Before (or after) xyz?
 
-### Critical Aspects
- * Must define global styles
- * Must define 
-
+### Critical Elements
+ * Must define global styles in design as early as possible
+ * Must understand environments for usage of front end code as early as possible
+ * Must understand and define browser fall-back/behavior as early as possible
 
 ## Environments
 
 ### Servers
-
  * Local Development 
  * Shared Development Servers
  * Staging Servers
  * QA Servers
 
-### Builds
+### Developers
+ * What types of environments will developers have access to?
+ * How will shared code and parallel development be managed?
+ * Will there be full local environments available?
 
+### Tools
+ * Expected IDEs
+ * Project File Types
+
+### Builds
  * Please see Continuous Integration
  * Please see Builds and Deployments
 
+
 ## Baseline Front End Architecture
+ * Are there coding standards or guidelines to be followed?
+ * Having a clear approach, structure, system, or "approach" is critical.
+ * Where does new code get added?
+   * How is it executed?
+   * How is it included?
+   * More info under each particular technology
  * JS
-    * Libraries and Frameworks
+    * Will usage of specific Libraries and Frameworks be required, or helpful?
+    * Folder structure
  * CSS
-    * Libraries and Frameworks
+    * Will usage of specific Libraries and Frameworks be required, or helpful?
+    * Folder structure
  * Img
+   * Does the client "care" about things like transparent PNG images in older versions of IE?
+   * Folder structure
+ * Will content management come into play?
+   * Will authors need to "format" HTML and CSS in certain cases?
+   * What about application of CSS and HTML to uploaded assets?
+   * Rich text editors?
 
 ## HTML
 
 ### Doctypes and Rendering Modes
- * Integration with server tools (see above)
+ * Integration with server tools, products, software (see above)
  * MSIE Rendering modes
     * Does the server environment specify a rendering mode for IE?
     * Are they on the compatibility list from Microsoft?
+    * Can HTTP headers be set from the server?
 
 ### Templates / Server Pre-Processing
  * Client side templates?
  * Server side templates?
+ * Pre-compilation?
  * Relationship to Builds and Dependency Managment (see other topics)
 
 ### HTML5 Tag Usage
- * Modernizr / Shiv
+ * Polyfills needed, what types?
+ * Does it address the IE printing issues?
 
 ### Grid System
  * See CSS
@@ -156,35 +187,44 @@ General high level overview of front end technology considerations while buildin
 
 ## Cascading Style Sheets
 
+Having a "System" is critical.
+
 ### Division of Concerns
  * Site Design
  * Brand
  * Page or Section Specific code
 
-### Frameworks
- * Bootstrap
- * Grids
- * Resets
- * Normalize
- * SMACSS
- * OOCSS
+### CSS Frameworks
+ * Will a pre-built framework help?
+ * What about a Grid system?
 
 ### Hacks vs. CSS3 vs. IE
+ * What type of approach is being used?
+ * Can older browsers just "not see" these effects?
+ * Do we need polyfills for everything?
+ * Should the design change?
 
 ### Fonts & Typography
- * Strategy
+ * Strategy / Content management/entry
  * Cross Domain Concerns
 
 ### Server Pre-Processing Tools
- * SASS
- * LESS
+ * Dynamic CSS libraries?
+ * Developer environments?
+ * Build environments?
+ * Extent of use? (a lot, a little, etc.)
+ * Best practices ... 
 
 ### Output
  * All CSS at all times?
  * Dependency Management
- * How are &lt;link&gt; tags rendered?
+ * How are &lt;link&gt; tags rendered / HTML updated?
+ * Is there a Cache and Cache-busting strategy?
 
 ### Printing Requirements
+ * Do particular pages need to be printed?
+ * What level of detail?
+ * Are there exceptions?
 
 ### Folder Structure
  * Core Styles
@@ -201,16 +241,16 @@ General high level overview of front end technology considerations while buildin
 
 ## JavaScript
 
-  This is a huge topic. Many, many more notes to come.
+Having a "System" (i.e. architecture) is critical.
 
 Bottom line, it has been said the best way to build a large scale JavaScript application is to NOT build a large scale application.
-(**attribution needed**)
 
 From "[Large Scale JS Applications](http://addyosmani.com/largescalejavascript/)":
 
 > We want a loosely coupled architecture with functionality broken down into independent modules with ideally no inter-module dependencies. Modules speak to the rest of the application when something interesting happens and an intermediate layer interprets and reacts to these messages.
 
 ### Namespaces
+ * Is the global scope an issue?
  * What namespace structure will be used?
 
 ### Globals / Exports
@@ -220,24 +260,6 @@ From "[Large Scale JS Applications](http://addyosmani.com/largescalejavascript/)
 ### Code Style Standards
  * Are there coding guidelines in place?
  * Style guidelines?
-
-### Pattern Usage
-[JavaScript Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/)
-
- * Module Pattern (e.g. Simple, or Revealing)
- * Singletons
- * Observers / Publish-Subscribe
- * Mediators
- * Facades
- * Command Pattern
- * Factory
- * Mixin
- * Decorator
-
-### Patterns of Scale
- * MVC
- * MVP
- * MVVM
 
 ### Code Growth
 
@@ -270,39 +292,22 @@ Before arbitrarily adding code, libraries, new modules, consider:
    * per page
    * per site section
    * for all pages
- * Tools
-   * Async Loaders 
-     * RequireJS
-     * Curl.js
-     * Yepnope.js
-     * Head.js
-     * Lab.js
-   * CommonJS / AMD
 
 ### Libraries / Frameworks
- * jQuery / jQuery UI
- * MVC Frameworks
-    * Backbone.js
-    * Spine.js
-    * JavascriptMVC
-    * AngularJS
-    * YUILibrary
-    * Ext.js
-    * Dojo
-    * Closure
-    * Ember.js
- * Server Side (e.g. Node.js)
+ * What functional requirements drive the assumed or required library usage?
+ * What are the longer term conditions that this code will need to deal with?
 
 ### Plugins / Widgets
  * Specific UI requirements
+ * Mobile users?
  * Richness of API or footprint
  * Bundled widgets?
    * Usually from backend server technology
  * Translations
 
 ### Translations in JS
- * (please see Translations / Localization / i18n above)
- * Avoid putting raw strings in JS
+ * (please see Translations / Localization / i18n)
+ * Raw string usage in JS
  * Where will the strings be sourced from?
  * How will they be delivered to the front end vs. the build process?
 
@@ -336,10 +341,11 @@ Before arbitrarily adding code, libraries, new modules, consider:
  * Minification and Concatenation of CSS
    * Will there be any preprocessing?
  * Minification and Concatenation of JS
-
  * Locally performed?
  * Automated as part of backend build?
  * Both?
+ * Cache strategy, or Cache busting strategy?
+ * How will files be updated to point to built file versions?
 
 ### Build & Deployment
  * Platform considerations
@@ -350,21 +356,23 @@ Before arbitrarily adding code, libraries, new modules, consider:
  * Different settings / files for different environments
  * How many?
  * Where will code have to run?
+ * Different types of developers, testing, continuous integration, etc.
 
 
 ## Unit Testing
 
 ### TDD
- * Jasmine
- * QUnit
- * Other...
+ * Is this a requirement?
+ * Is there time?
+ * What patterns should be followed by coders to facilitate this?
+ * Will tests be done locally, as part of the builds, or other?
 
-### Visual
- * Design
- * CSS
-
-### JSLint / JSHint
- * See Builds (above)
+### Content & Visuals
+ * How will visual design be QA'd?
+ * Content?
+ * Translations?
+ * Browser testing?
+ * Mobile devices?
 
 
 ## Deployment
@@ -386,9 +394,5 @@ Before arbitrarily adding code, libraries, new modules, consider:
  * Who will maintain the site's content, and how?
  * Who will own ongoing development of the site?
 
-
-## Tools
- * Expected IDEs
- * Project File Types
 
 
