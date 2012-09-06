@@ -1,3 +1,6 @@
+---
+title: Checklist
+---
 
 # Baseline Front End Architecture Checklist
 

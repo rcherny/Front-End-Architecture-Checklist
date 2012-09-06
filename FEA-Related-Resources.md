@@ -1,3 +1,6 @@
+---
+title: Front End Resources
+---
 
 # Front End Dev Resources, etc.
 
