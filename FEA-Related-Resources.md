@@ -1,5 +1,6 @@
 ---
-title: Front End Resources
+layout: main
+title: Front End Architecture - Resources
 ---
 
 # Front End Dev Resources, etc.
