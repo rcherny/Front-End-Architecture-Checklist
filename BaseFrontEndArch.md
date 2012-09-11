@@ -1,5 +1,6 @@
 ---
-title: Checklist
+layout: main
+title: Baseline Front End Architecture - The Checklist
 ---
 
 # Baseline Front End Architecture Checklist
